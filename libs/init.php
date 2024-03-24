@@ -1,19 +1,19 @@
 <?php
 //? libs:init.php v0.5.1
 //! Publics
-include_once './array.php';
-include_once './@form/processors/@processor.php';
-include_once './@form/get_post.php';
-include_once './@security/upload.php';
-include_once './session.php';
-include_once './sql.php';
+include_once 'array.php';
+include_once '@form/processors/@processor.php';
+include_once '@form/get_post.php';
+include_once '@security/upload.php';
+include_once 'session.php';
+include_once 'sql.php';
 
 //! For This Project
-include_once './@user/user.php';
-include_once './jdf/jdf.php';
+include_once '@user/user.php';
+include_once 'jdf/jdf.php';
 
 //! ADMIN
-include_once '../admin/lib.php';
+include_once __DIR__ . "/../admin/lib.php";
 
 function redirect($url)
 {
