@@ -1,7 +1,6 @@
 <?php
-require_once ('libs/init.php');
-require_once ('libs/@user/user.php');
-require_once ('libs/@user/follow.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
+
 $uname = get_val('user') != '' ? get_val('user') : (get_val('id') != '' ? get_val('id') : get_val('q'));
 $q = get_users(cols: '*', condition: 'username = ?', p: [$uname]);
 $cols = $q->fetchAll(PDO::FETCH_ASSOC);

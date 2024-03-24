@@ -1,7 +1,5 @@
 <?php
-require_once 'auth.php';
-require_once 'follow.php';
-require_once 'libs/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 //NOTE THIS FILE REQUIRES:
 // A users TABLE WITH id

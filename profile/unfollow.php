@@ -1,7 +1,5 @@
 <?php
-require_once ('libs/init.php');
-require_once ('libs/@user/user.php');
-require_once ('libs/@user/follow.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 $fd = get_val('fd') ?? '';
 

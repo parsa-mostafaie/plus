@@ -1,5 +1,5 @@
 <?php
-require_once ('libs/sql.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/sql.php';
 
 //NOTE THIS FILE IS CUSTOMIZED
 

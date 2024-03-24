@@ -7,10 +7,12 @@ include_once '@form/get_post.php';
 include_once '@security/upload.php';
 include_once 'session.php';
 include_once 'sql.php';
+include_once 'auth.php';
 
 //! For This Project
 include_once '@user/user.php';
 include_once 'jdf/jdf.php';
+include_once 'follow.php';
 
 //! ADMIN
 include_once __DIR__ . "/../admin/lib.php";

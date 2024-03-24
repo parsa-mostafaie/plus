@@ -1,6 +1,5 @@
 <?php
-require_once "libs/@user/user.php";
-require_once "libs/init.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/libs/init.php";
 
 //NOTE: THIS LIB IS PUBLIC ONLY IF getUserInfo BE PUBLIC
 

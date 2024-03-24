@@ -1,7 +1,5 @@
 <?php
-require_once 'libs/init.php';
-require_once 'libs/@form/processors/@processor.php';
-require_once 'libs/@user/auth.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 $uname = get_val('uname');
 $pword = get_val('pword');

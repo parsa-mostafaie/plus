@@ -1,5 +1,5 @@
 <?php
-require_once ("libs/init.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 if (!function_exists('canlogin')) {
     echo '<b>Internal ERROR: canLogin does not exists</b>';

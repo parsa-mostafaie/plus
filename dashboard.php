@@ -16,9 +16,7 @@
 
 <body class='vh-100 p-3'>
   <?php
-  require_once ('admin/lib.php');
-  require_once ('libs/@user/user.php');
-  require_once ('libs/@user/follow.php');
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
   if (getUserInfo() == null) {
     redirect('/');
   }

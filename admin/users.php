@@ -1,5 +1,5 @@
 <?php
-require_once ('lib.php');
+require_once 'lib.php';
 
 //? Only Admin can access /admin
 authAdmin();
@@ -17,8 +17,6 @@ authAdmin();
 
 <body>
   <?php
-  require_once ('libs/init.php');
-  require_once ('libs/jdf/jdf.php');
 
   //? SEARCH IN 'firstname lastname' AND username
   [$where, $sval] = searchCondition(get_val('search'), "CONCAT(firstname, ' ', lastname)", 'username');

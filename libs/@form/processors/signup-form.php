@@ -1,8 +1,5 @@
 <?php
-require_once 'libs/init.php';
-require_once 'libs/@form/processors/@processor.php';
-require_once 'admin/lib.php';
-require_once 'libs/@security/upload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 $fname = get_val('fname');
 $lname = get_val('lname');

@@ -1,7 +1,6 @@
 <?php
-require_once ('libs/init.php');
-require_once ('libs/@form/processors/login-form.php');
-require_once ('libs/@form/processors/@processor.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/login-form.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,7 +1,5 @@
 <?php
-require_once('libs/init.php');
-require_once("libs/@user/user.php");
-require_once('lib.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 //? only admins can delete users
 authAdmin();

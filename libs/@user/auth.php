@@ -1,8 +1,5 @@
 <?php
-require_once "libs/sql.php";
-require_once "libs/session.php";
-require_once "user.php";
-require_once "libs/init.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/libs/init.php";
 
 //NOTE: THIS PART/FILE IS PUBLIC ONLY WHEN:
 //------ DB HAS:
