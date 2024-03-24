@@ -1,13 +1,15 @@
 <?php
+//NOTE: THIS NEED CUSTOMIZATION IN LINE THAT MARKED BY *
+
 date_default_timezone_set('Asia/Tehran');
 
 if (!isset ($db)) {
-    $db = new PDO('mysql:dbname=php_app;charset=utf8', 'root', '');
+    $db = new PDO('mysql:dbname=php_app;charset=utf8', 'root', ''); // *
 }
 
 function searchCondition($searchInput, ...$colLike)
 {
-    $where = ''; //? Conditions to find user
+    $where = ''; //? Conditions to find
     $sval = '1 = 1'; //? What to search?
 
     if ($searchInput && $searchInput != '') {

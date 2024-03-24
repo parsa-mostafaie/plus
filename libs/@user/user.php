@@ -3,6 +3,10 @@ require_once 'auth.php';
 require_once 'follow.php';
 require_once 'init.php';
 
+//NOTE THIS FILE REQUIRES:
+// A users TABLE WITH id
+
+//NOTE THIS PART IS PUBLIC ONLY WHEN: users TABLE HAS id and admin
 function growUpUser($id)
 {
   return update_q('users', 'id=?', 'admin = 1', [$id]);
@@ -12,7 +16,9 @@ function shrinkDownUser($id)
 {
   return update_q('users', 'id=?', 'admin = 0', [$id]);
 }
+//ENDPART
 
+//NOTE THIS PART IS PUBLIC
 function validateUserName($userName)
 {
   if (preg_match('/^[A-Za-z][0-9A-Za-z_-]{2,24}$/', $userName)) {
@@ -20,7 +26,9 @@ function validateUserName($userName)
   }
   return false;
 }
+//ENDPART
 
+//NOTE THIS PART IS CUSTOMIZED
 function set_prof_image($tid, $name)
 {
   $file = uploadFile_secure($name, prefix: 'user_profile_');
@@ -51,7 +59,9 @@ function get_prof_img($uname, $cattrs = '')
               rounded-circle" onerror="this.onerror=null;this.src=\'/photos/unknown.png\'" alt="Image" ' . $cattrs . '>
 ';
 }
+//ENDPART
 
+//NOTE THIS PART IS CUSTOMIZED
 function add_user($fname, $lname, $uname, $pword)
 {
   $date = date('Y-m-d H:i:s');
@@ -59,7 +69,9 @@ function add_user($fname, $lname, $uname, $pword)
   $insert = insert_q('users', 'firstname, lastname, date, username, password', '?, ?, ?, ?, ?', [$fname, $lname, $date, $uname, $hashed]);
   return $insert;
 }
+//ENDPART
 
+// THIS PART IS PUBLIC
 function get_users(...$params)
 {
   return select_q("users", ...$params);
@@ -78,3 +90,4 @@ function delete_users($id)
   }
   return false;
 }
+// ENDPART

@@ -1,4 +1,6 @@
 <?php
+//NOTE: THIS FILE IS ALWAYS PUBIL
+
 // globals: 
 //      vars: 
 //          _SUCCESS, _SUBMITED, _COND

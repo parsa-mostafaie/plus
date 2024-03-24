@@ -4,6 +4,10 @@ require_once "libs/session.php";
 require_once "user.php";
 require_once "libs/init.php";
 
+//NOTE: THIS PART/FILE IS PUBLIC ONLY WHEN:
+//------ DB HAS:
+//------- A users Table With {username, password, mail}
+
 //? return: login successed?
 function loginWith($username, $pass)
 {
@@ -42,6 +46,7 @@ function canLoginWith($id, $pass)
   return false;
 }
 
+
 function getUserInfo()
 {
   if (canLogin()) {
@@ -63,3 +68,4 @@ function signout()
 {
   unset($_SESSION['uid'], $_SESSION['pass']);
 }
+// ENDPART

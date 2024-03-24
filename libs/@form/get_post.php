@@ -1,4 +1,5 @@
 <?php
+//NOTE: THIS FILE IS ALWAYS PUBLIC
 //? Check Both Of POST and GET Methods
 
 function get_val($name)

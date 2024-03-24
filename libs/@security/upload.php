@@ -1,4 +1,5 @@
 <?php
+//NOTE: THIS FILE IS ALWAYS PUBLIC
 function uploadFile_secure(
     $name,
     $max_size = 3145728,

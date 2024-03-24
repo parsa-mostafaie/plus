@@ -1,4 +1,6 @@
-<?php function array_any(array $array, callable $fn)
+<?php 
+//NOTE: THIS IS ALWAYS PUBLIC
+function array_any(array $array, callable $fn)
 {
   foreach ($array as $value) {
     if ($fn($value)) {

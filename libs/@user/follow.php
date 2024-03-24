@@ -1,6 +1,8 @@
 <?php
 require_once ('libs/sql.php');
 
+//NOTE THIS FILE IS CUSTOMIZED
+
 function follows($follower, $followed)
 {
     return select_q('follow', 'count(*)', condition: 'user_follower = ? AND user_followed = ?', p: [$follower, $followed])->fetchColumn();
