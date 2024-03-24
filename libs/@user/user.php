@@ -1,6 +1,7 @@
 <?php
 require_once 'auth.php';
-require_once 'libs/@security/upload.php';
+require_once 'follow.php';
+require_once 'init.php';
 
 function growUpUser($id)
 {
