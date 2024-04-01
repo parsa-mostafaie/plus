@@ -55,7 +55,7 @@ function get_prof_img($uname, $cattrs = '')
   $purl =
     get_prof_url(get_users(cols: 'id', condition: "username = '$uname'")->fetchColumn());
   return '<img src="' . $purl . '" class="avatar-xxl
-              rounded-circle" onerror="this.onerror=null;this.src=\'/photos/unknown.png\'" alt="Image" ' . $cattrs . '>
+              rounded-circle" onerror="this.onerror=null;this.src=\'/default_uploads/unknown.png\'" alt="Image" ' . $cattrs . '>
 ';
 }
 
