@@ -43,24 +43,26 @@ if (!$cols) {
 
     <link rel="stylesheet" href="/styles/pages/profile_index.css">
 
-    <script>
-      function rem_profile() {
-        swal({
-          title: "Are you sure?",
-          text: "Are you sure that you want to Remove your profile photo?",
-          icon: "warning",
-          buttons: {
-            cancel: true,
-            confirm: true
+    <?php if ($id == getUserInfo_prop('id')): ?>
+      <script>
+        <?php if (hasprofimg($id)): ?>
+          function rem_profile() {
+            swal({
+              title: "Are you sure?",
+              text: "Are you sure that you want to Remove your profile photo?",
+              icon: "warning",
+              buttons: {
+                cancel: true,
+                confirm: true
+              }
+            }
+            ).then(sure => {
+              sure && (location.href = '/profile/remprof.php');
+            });
           }
-        }
-        ).then(sure => {
-          sure && (location.href = '/profile/remprof.php');
-        });
-
-      }
-
-    </script>
+        <?php endif ?>
+      </script>
+    <?php endif ?>
   </head>
 
   <body>
@@ -182,7 +184,7 @@ if (!$cols) {
         </div>
       <?php endif ?>
     </div>
-    <?php if ($id == getUserInfo_prop('id')): ?>
+    <?php if ($id == getUserInfo_prop('id') && hasprofimg($id)): ?>
       <!-- Modal -->
       <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">

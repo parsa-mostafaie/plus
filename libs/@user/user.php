@@ -58,6 +58,13 @@ function get_prof_img($uname, $cattrs = '')
               rounded-circle" onerror="this.onerror=null;this.src=\'/photos/unknown.png\'" alt="Image" ' . $cattrs . '>
 ';
 }
+
+function hasprofimg($tid)
+{
+  $_purl = get_prof_url($tid);
+  $purl = $_SERVER['DOCUMENT_ROOT'] . str_replace('/', DIRECTORY_SEPARATOR, $_purl);
+  return file_exists($purl) && get_users(cols: 'profile', condition: 'id=?', p: [$tid])->fetchColumn();
+}
 //ENDPART
 
 //NOTE THIS PART IS CUSTOMIZED
