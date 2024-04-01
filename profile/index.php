@@ -182,25 +182,27 @@ if (!$cols) {
         </div>
       <?php endif ?>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">Profile Photo</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Actions you can do:
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a type="button" class="btn btn-danger" onclick='rem_profile()'>Remove Profile
-              Photo</a>
+    <?php if ($id == getUserInfo_prop('id')): ?>
+      <!-- Modal -->
+      <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Profile Photo</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Actions you can do:
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a type="button" class="btn btn-danger" onclick='rem_profile()'>Remove Profile
+                Photo</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <?php endif ?>
   </body>
 
   </html>
