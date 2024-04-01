@@ -65,3 +65,9 @@ function number_format_short($n, $precision = 1)
 
   return $n_format . $suffix;
 }
+
+
+function regular_url($_purl)
+{
+  return str_replace('/', DIRECTORY_SEPARATOR, $_purl);
+}

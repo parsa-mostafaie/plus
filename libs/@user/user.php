@@ -62,7 +62,7 @@ function get_prof_img($uname, $cattrs = '')
 function hasprofimg($tid)
 {
   $_purl = get_prof_url($tid);
-  $purl = $_SERVER['DOCUMENT_ROOT'] . str_replace('/', DIRECTORY_SEPARATOR, $_purl);
+  $purl = $_SERVER['DOCUMENT_ROOT'] . regular_url($_purl);
   return file_exists($purl) && get_users(cols: 'profile', condition: 'id=?', p: [$tid])->fetchColumn();
 }
 //ENDPART
