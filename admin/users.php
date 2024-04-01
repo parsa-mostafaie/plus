@@ -19,7 +19,7 @@ authAdmin();
   <?php
 
   //? SEARCH IN 'firstname lastname' AND username
-  [$where, $sval] = searchCondition(get_val('search'), "CONCAT(firstname, ' ', lastname)", 'username');
+  [$where, $p] = searchCondition(get_val('search'), "CONCAT(firstname, ' ', lastname)", 'username');
 
   $current_page = get_val('page');
 
@@ -31,7 +31,7 @@ authAdmin();
     cols: 'id, username, firstname, lastname, date, admin',
     order: 'date DESC',
     condition: $where,
-    p: !$where ? [] : [$sval]
+    p: $p
   );
 
   $current_page = $users_pagination['current'];

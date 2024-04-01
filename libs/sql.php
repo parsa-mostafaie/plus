@@ -3,26 +3,28 @@
 
 date_default_timezone_set('Asia/Tehran');
 
-if (!isset ($db)) {
+if (!isset($db)) {
     $db = new PDO('mysql:dbname=php_app;charset=utf8', 'root', ''); // *
 }
 
+//! Only for strings search
 function searchCondition($searchInput, ...$colLike)
 {
-    $where = ''; //? Conditions to find
-    $sval = '1 = 1'; //? What to search?
+    $where = '1 = 1'; //? Conditions to find
+    $qm = 0; //? question Mark Count
+    $sval = ''; //? What to Like
 
     if ($searchInput && $searchInput != '') {
-        $sval = '%' . get_val('search') . '%';
-        for ($i = 0; $i < count($colLike); $i++) {
-            $col = $colLike[$i];
-            $op = $i == 0 ? 'AND (' : 'OR';
-            $last = ($i + 1) == count($colLike) ? ')' : '';
-            $where .= " $op $col LIKE ? $last";
+        $sval = '%' . $searchInput . '%';
+        $where .= ' AND ( 0 = 1 ';
+        foreach ($colLike as $col) {
+            $where .= " OR $col LIKE ? ";
+            $qm++;
         }
+        $where .= ')';
     }
 
-    return [$where, $sval];
+    return [$where, array_fill(0, $qm, $sval)];
 }
 
 function exec_q($q, $p, $fetch_b = false)
