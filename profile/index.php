@@ -121,8 +121,14 @@ if (!$cols) {
               </div>
 
               <div class="d-flex col-250 gap-auto-0" style='gap: 2em; font-size:16px'>
-                <a class='link text-decoration-none' href='#'>Followers</a>
-                <a class='link text-decoration-none' href='#'>Followings</a>
+                <a class='link text-decoration-none' href='#'>
+                  <b>
+                    <?= number_format_short(count(followers($id))) ?>
+                  </b> Followers</a>
+                <a class='link text-decoration-none' href='#'><b>
+                    <?= number_format_short(count(followings($id))) ?>
+                  </b> Followings</a>
+
               </div>
               <div class="dropdown">
                 <a class="dropdown-toggle text-decoration-none text-secondary after-none" type="button"
