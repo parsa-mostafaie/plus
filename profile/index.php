@@ -115,7 +115,9 @@ if (!$cols) {
                   </a>
                 </h2>
                 <p class="mb-0 d-none d-sm-block">
-                  <?= "@" . $uname ?>
+                  <a href="/profile/?q=<?= $id ?>" class='text-success text-decoration-none'>
+                    <?= "@" . $uname ?>
+                  </a>
                   <?= $mail ? "(<a href='mailto:$mail'>Email</a>)" : '' ?>
                 </p>
               </div>
@@ -131,14 +133,26 @@ if (!$cols) {
 
               </div>
               <div class="dropdown">
-                <a class="dropdown-toggle text-decoration-none text-secondary after-none" type="button"
-                  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-three-dots-vertical"></i>
+                <?php if ($id != getUserInfo_prop('id')): ?>
+                  <span>
+                    <?php if (!follows(getUserInfo_prop('id'), $id)): ?>
+                      <a href="./follow.php?fd=<?= $id ?>" class="btn btn-primary rounded-pill">Follow</a>
+                    <?php endif ?>
+                    <?php if (follows(getUserInfo_prop('id'), $id)): ?>
+                      <a href="./unfollow.php?fd=<?= $id ?>" class="btn btn-outline-primary rounded-pill"><i
+                          class='bi bi-check2'></i> Followed</a>
+                    <?php endif ?>
+                  </span>
+                <?php endif ?>
+                <a class="dropdown-toggle text-decoration-none rounded-pill after-none btn btn-outline-secondary"
+                  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  More
                 </a>
-                <ul class="dropdown-menu" style="font-size: 1.05rem;" aria-labelledby="dropdownMenuButton1">
+                <ul class="dropdown-menu py-1" style="font-size: 1.05rem;" aria-labelledby="dropdownMenuButton1">
                   <?php if (getUserInfo_prop('username') == $uname): ?>
                     <li>
-                      <a href="/signout.php" class="dropdown-item text-decoration-none"><i class="bi bi-box-arrow-left"></i>
+                      <a href="/signout.php" class="dropdown-item text-decoration-none text-danger"><i
+                          class="bi bi-box-arrow-left"></i>
                         Signout</a>
                     </li>
                     <li><a href="/dashboard.php" class="dropdown-item"><i class='bi bi-person'></i> Dashboard</a></li>
@@ -154,6 +168,7 @@ if (!$cols) {
                     </li>
                   <?php endif; ?>
                 </ul>
+
               </div>
             </div>
 
