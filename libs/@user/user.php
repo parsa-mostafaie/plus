@@ -30,6 +30,7 @@ function validateUserName($userName)
 function set_prof_image($tid, $name)
 {
   $file = uploadFile_secure($name, prefix: 'user_profile_');
+  rem_prof_img($tid);
   return update_users(condition: "id='$tid'", set: "profile = ?", params: [$file]);
 }
 
@@ -83,6 +84,7 @@ function update_users(...$args)
 function delete_users($id)
 {
   $id = intval($id);
+  rem_prof_img($id);
   if ($id) {
     return delete_q("users", "id = ?", [$id]);
   }
