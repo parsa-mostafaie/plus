@@ -11,16 +11,54 @@
   <link rel="stylesheet" href="styles/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
   </script>
+  <style>
+    #chartContainer {
+      background: #fff;
+      border: 1px solid #aaa;
+      border-radius: 1rem;
+      overflow: hidden;
+      max-height: 150px;
+      max-width: min(300px, 100%);
+    }
+
+    .canvasjs-chart-credit {
+      display: none !important;
+    }
+  </style>
 
 </head>
 
 <body class='vh-100 p-3'>
   <?php
   require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
+  $uc = get_users(cols: 'count(*)')->fetchColumn();
+  $dataPoints = exec_q("SELECT lu_browser as label, (COUNT(*) * 100 / $uc) as y from users GROUP BY lu_browser", [], true)->fetchAll(PDO::FETCH_ASSOC);
   if (getUserInfo() == null) {
     redirect('/');
   }
   ?>
+  <?php if (isAdmin()) { ?>
+    <script>
+      window.onload = function () {
+
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+          animationEnabled: true,
+          title: {
+            text: "Last Used Browsers"
+          },
+          data: [{
+            type: "pie",
+            yValueFormatString: "#,##0.00\"%\"",
+            indexLabel: "{label} ({y})",
+            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+          }]
+        });
+        chart.render();
+
+      }
+    </script>
+  <?php } ?>
   <div class="container-fluid h-100">
     <div class="row flex-nowrap h-100 gap-1">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark h-100 rounded-3">
@@ -83,7 +121,7 @@
           </div>
         </div>
       </div>
-      <div class="col py-3 bg-secondary text-light rounded-4">
+      <div class="col py-3 bg-secondary text-light rounded-4 overflow-y-auto">
         <div class="tab-content">
           <div id="self" class="tab-pane fade">
             <h3 class='fw-bold'>Self Analytics</h3>
@@ -126,7 +164,9 @@
                       <?= get_users(cols: 'count(*)', condition: 'admin=1')->fetchColumn() ?>
                     </span>
                   </div>
+
                 </div>
+                <div id="chartContainer" style="height: 370px; width: 100%;" class='mt-3'></div>
 
               </div>
             </div>
@@ -136,6 +176,8 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </body>
 
 </html>
