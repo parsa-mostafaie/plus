@@ -52,15 +52,15 @@ authAdmin();
         Total Search Result:
         <?= $users_pagination['count'] ?>
       </b>
-      <table class='table table-striped table-dark table-hover table-bordered m-0' style='user-select:none;'>
+      <table class='table table-striped table-dark table-hover table-bordered m-0 text-nowrap text-center' style='user-select:none;'>
         <thead>
           <tr>
             <th>#</th>
             <th>UserName</th>
             <th>FirstName</th>
             <th>LastName</th>
-            <th class='d-none d-lg-table-cell'>Register Date</th>
-            <th class='d-none d-lg-table-cell'>Register Date (Persian)</th>
+            <th>Register Date</th>
+            <th>Register Date (Persian)</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -71,8 +71,7 @@ authAdmin();
               <?php foreach ($user as $key => $value): ?>
                 <?php if ($key !== 'admin'): ?>
                   <?php $ia = $key == "username" && $user["admin"] == 1 ?>
-                  <td class='<?= $ia ? "text-primary fw-bold" : "" ?> <?= $key == "date" ? "d-none d-lg-table-cell" : "" ?>'
-                    title='<?= $key == "id" ? "(#$value)" : "" ?>'>
+                  <td class='<?= $ia ? "text-primary fw-bold" : "" ?>' title='<?= $key == "id" ? "(#$value)" : "" ?>'>
                     <?php if ($key == 'username'): ?>
                       <a href='/profile/?user=<?= $value ?>' target='blank'>
                       <?php endif ?>
@@ -82,14 +81,14 @@ authAdmin();
                     <?php endif ?>
                   </td>
                   <?php if ($key == "date"): ?>
-                    <td style='direction: rtl' class='d-none d-lg-table-cell'>
+                    <td style='direction: rtl'>
                       <?= jdate('d F Y', strtotime($value)); ?>
                     </td>
                   <?php endif ?>
                 <?php endif ?>
               <?php endforeach ?>
               <td>
-                <div class='d-flex gap-1 h-100 flex-column flex-md-row'>
+                <div class='d-flex gap-1 h-100'>
                   <a href='/signup.php?id=<?= $user["id"] ?>' class='btn btn-primary'>Edit</a>
                   <a href='./delete_user.php?uid=<?= $user["id"]; ?>' class='btn btn-danger'>Delete</a>
                   <?php if ($user['admin'] == 0) { ?>
