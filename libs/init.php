@@ -8,6 +8,7 @@ include_once '@security/upload.php';
 include_once 'session.php';
 include_once 'sql.php';
 include_once '@user/auth.php';
+include_once "info.php";
 
 //! For This Project
 include_once '@user/user.php';
