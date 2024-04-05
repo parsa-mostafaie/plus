@@ -25,12 +25,7 @@ function canlogin()
   $id = get_session('uid');
   $pass = get_session('pass');
 
-  $LU = function ($id) {
-    update_q('users', 'id = ' . $id, 'lu_browser = ?', [getBrowser()['name']]);
-    return true;
-  };
-
-  return canLoginWith($id, $pass) ? $LU($id) : false;
+  return canLoginWith($id, $pass) ? user_actived($id) : false;
 }
 
 function canLoginWith($id, $pass)

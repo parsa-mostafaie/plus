@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 //NOTE THIS FILE REQUIRES:
-// A users TABLE WITH id
+// A users TABLE WITH {id, last_activity_time}
 
 //NOTE THIS PART IS PUBLIC ONLY WHEN: users TABLE HAS id and admin
 function growUpUser($id)
@@ -96,5 +96,25 @@ function delete_users($id)
     return delete_q("users", "id = ?", [$id]);
   }
   return false;
+}
+// ENDPART
+
+// REQUIRES: users table with: last_activity_time, lu_browser
+function user_actived($id)
+{
+  update_q('users', 'id = ' . $id, 'lu_browser = ?', [getBrowser()['name']]);
+  update_q('users', 'id = ' . $id, 'last_activity_time = NOW()');
+  return true;
+}
+function last_activity_time($id)
+{
+  return get_users(cols: 'last_activity_time', condition: 'id = ?', p: [$id])->fetchColumn();
+}
+function last_activity_time__ago__($id)
+{
+  return get_users(cols: '(TIMESTAMPDIFF(MINUTE, last_activity_time, NOW()))', condition: 'id = ?', p: [$id])->fetchColumn();
+}
+function isOnline($id){
+  return last_activity_time__ago__($id) <= 2;
 }
 // ENDPART

@@ -78,7 +78,7 @@ if (!$cols) {
             <div class="d-flex align-items-center justify-content-between
           pt-4 pb-6 px-4">
               <div class="d-flex align-items-center">
-                <div class="avatar-xxl avatar-indicators avatar-online me-2
+                <div class="avatar-xxl <?= isOnline($id) ? 'avatar-indicators' : '' ?> avatar-online me-2
               position-relative d-flex justify-content-end
               align-items-end mt-n10 rounded-circle" style='background-color: white;'>
                   <?php if (getUserInfo_prop('id') == $id): ?>
