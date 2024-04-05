@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/libs/init.php";
 
 //NOTE: THIS PART/FILE IS PUBLIC ONLY WHEN:
 //------ DB HAS:
-//------- A users Table With {username, password, mail}
+//------- A users Table With {username, password, mail, lu_browser}
 
 //? return: login successed?
 function loginWith($username, $pass)
@@ -25,7 +25,12 @@ function canlogin()
   $id = get_session('uid');
   $pass = get_session('pass');
 
-  return canLoginWith($id, $pass);
+  $LU = function ($id) {
+    update_q('users', 'id = ' . $id, 'lu_browser = ?', [getBrowser()['name']]);
+    return true;
+  };
+
+  return canLoginWith($id, $pass) ? $LU($id) : false;
 }
 
 function canLoginWith($id, $pass)
