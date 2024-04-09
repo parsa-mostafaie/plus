@@ -13,6 +13,7 @@ authAdmin();
   <title>User List</title>
   <link rel="stylesheet" href="/styles/style.css">
 
+  <script src='/sparams.js'></script>
 </head>
 
 <body>
@@ -110,7 +111,7 @@ authAdmin();
       <ul class="pagination">
         <?php if ($current_page > 1): ?>
           <li class="page-item">
-            <a class="page-link" href="?page=<?= $current_page - 1 ?>" tabindex="-1">Previous</a>
+            <a class="page-link" href="#" page="<?= $current_page - 1 ?>" tabindex="-1">Previous</a>
           </li>
         <?php endif ?>
 
@@ -123,7 +124,7 @@ authAdmin();
             </li>
           <?php } else { ?>
             <li class='page-item'>
-              <a class='page-link' href='?page=<?= $i ?>'>
+              <a class='page-link' href="#" page='<?= $i ?>'>
                 <?= $i ?>
               </a>
             </li>
@@ -132,12 +133,20 @@ authAdmin();
 
         <?php if ($current_page < $pages): ?>
           <li class="page-item">
-            <a class="page-link" href="?page=<?= $current_page + 1 ?>">Next</a>
+            <a class="page-link" href="#" page="<?= $current_page + 1 ?>">Next</a>
           </li>
         <?php endif ?>
       </ul>
     </nav>
   </div>
+
+  <script defer>
+    anchors('a[page]', {
+      attribute: {
+        page: (pv, url) => setUrlParams(url, 'page', pv)
+      }
+    })
+  </script>
 </body>
 
 </html>
