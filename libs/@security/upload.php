@@ -10,7 +10,7 @@ function uploadFile_secure(
     $prefix = ''
 ) {
 
-    if (!isset ($_FILES[$name])) {
+    if (!isset($_FILES[$name])) {
         return '';
     }
 
@@ -20,15 +20,15 @@ function uploadFile_secure(
     $filetype = finfo_file($fileinfo, $filepath);
 
     if ($fileSize === 0) {
-        die ("The file is empty.");
+        die("The file is empty.");
     }
 
     if ($fileSize > $max_size) {
-        die ("The file is too large");
+        die("The file is too large");
     }
 
     if (!in_array($filetype, array_keys($allowedTypes))) {
-        die ("File not allowed.");
+        die("File not allowed.");
     }
 
     $filename = uniqid('UPLOAD_' . $prefix, true);
@@ -39,7 +39,7 @@ function uploadFile_secure(
 
     $newFilepath = $targetDirectory . "/" . $filename . "." . $extension;
     if (!copy($filepath, $newFilepath)) { // Copy the file, returns false if failed
-        die ("Can't move file.");
+        die("Can't move file.");
     }
     unlink($filepath); // Delete the temp file
 
@@ -47,10 +47,12 @@ function uploadFile_secure(
 }
 function unlinkUpload($fname)
 {
-    unlink($_SERVER['DOCUMENT_ROOT'] . '/uploads' . '/' . $fname);
+    if (!urlOfUpload($fname))
+        return;
+    unlink($_SERVER['DOCUMENT_ROOT'] . urlOfUpload($fname));
 }
 
 function urlOfUpload($fname)
 {
-    return '/uploads' . '/' . $fname;
+    return $fname ? '/uploads' . '/' . $fname : null;
 }
