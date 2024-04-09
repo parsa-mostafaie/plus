@@ -52,7 +52,8 @@ authAdmin();
         Total Search Result:
         <?= $users_pagination['count'] ?>
       </b>
-      <table class='table table-striped table-dark table-hover table-bordered m-0 text-nowrap text-center' style='user-select:none;'>
+      <table class='table table-striped table-dark table-hover table-bordered m-0 text-nowrap text-center'
+        style='user-select:none;'>
         <thead>
           <tr>
             <th>#</th>
@@ -94,7 +95,7 @@ authAdmin();
                   <?php if ($user['admin'] == 0) { ?>
                     <a href="./grow.php?uid=<?= $user['id'] ?>" class='btn btn-success'>Grow</a>
                   <?php } ?>
-                  <?php if ($user['admin'] == 1 && $user['id'] != getUserInfo_prop('id')) { ?>
+                  <?php if ($user['admin'] == 1 && $user['id'] != getCurrentUserInfo_prop('id')) { ?>
                     <a href="./shrink.php?uid=<?= $user['id'] ?>" class='btn btn-warning'>Shrink</a>
                   <?php } ?>
                 </div>

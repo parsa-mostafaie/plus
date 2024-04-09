@@ -19,8 +19,8 @@ if (!function_exists('canlogin')) {
 
         <body>
             Hello
-            <a href='/profile/?user=<?= getUserInfo()["username"] ?>'>@
-            <?= getUserInfo()['username'] ?>
+            <a href='/profile/?user=<?= getCurrentUserInfo()["username"] ?>'>@
+            <?= getCurrentUserInfo()['username'] ?>
             </a>
         </body>
 

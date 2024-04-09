@@ -33,7 +33,7 @@
   require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
   $uc = get_users(cols: 'count(*)')->fetchColumn();
   $dataPoints = exec_q("SELECT lu_browser as label, (COUNT(*) * 100 / $uc) as y from users GROUP BY lu_browser", [], true)->fetchAll(PDO::FETCH_ASSOC);
-  if (getUserInfo() == null) {
+  if (getCurrentUserInfo() == null) {
     redirect('/');
   }
   ?>
@@ -103,16 +103,16 @@
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
               id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 
-              <?= get_prof_img(getUserInfo_prop('username'), 'width="30" height="30"') ?>
+              <?= get_prof_img(getCurrentUserInfo_prop('username'), 'width="30" height="30"') ?>
               <span class="d-none d-sm-inline ms-2 text-wrap">
                 <?php echo isAdmin() ? '<i class="bi bi-person-check"></i> ' : '<i class="bi bi-person"></i> '; ?>
-                <?= getUserInfo_prop('firstname') . ' ' . getUserInfo_prop('lastname') ?>
+                <?= getCurrentUserInfo_prop('firstname') . ' ' . getCurrentUserInfo_prop('lastname') ?>
               </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-white text-small shadow">
               <li><a class="dropdown-item" href="#">New project...</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="/profile/?q=<?= getUserInfo_prop('id') ?>">Profile</a></li>
+              <li><a class="dropdown-item" href="/profile/?q=<?= getCurrentUserInfo_prop('id') ?>">Profile</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -131,14 +131,14 @@
                   class='border-start border-primary d-inline-block bg-white p-3 rounded px-4 text-dark border-5 col-12 col-md-3'>
                   <h5 class='fw-bold' style='margin-left: -0.5rem'>Followers</h5>
                   <span>
-                    <?= count(followers(getUserInfo_prop('id'))) ?>
+                    <?= count(followers(getCurrentUserInfo_prop('id'))) ?>
                   </span>
                 </div>
                 <div
                   class='border-start border-danger d-inline-block bg-white p-3 rounded px-4 text-dark border-5 col-12 col-md-3'>
                   <h5 class='fw-bold' style='margin-left: -0.5rem'>Followings</h5>
                   <span>
-                    <?= count(followings(getUserInfo_prop('id'))) ?>
+                    <?= count(followings(getCurrentUserInfo_prop('id'))) ?>
                   </span>
                 </div>
               </div>

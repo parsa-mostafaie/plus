@@ -44,7 +44,7 @@ function canLoginWith($id, $pass)
 }
 
 
-function getUserInfo()
+function getCurrentUserInfo()
 {
   if (canLogin()) {
     $id = get_session('uid');
@@ -56,9 +56,9 @@ function getUserInfo()
   return null;
 }
 
-function getUserInfo_prop($name)
+function getCurrentUserInfo_prop($name)
 {
-  return getUserInfo()[$name] ?? null;
+  return getCurrentUserInfo()[$name] ?? null;
 }
 
 function signout()

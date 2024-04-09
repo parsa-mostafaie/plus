@@ -9,7 +9,7 @@ $quer_id = get_users(cols: '*', condition: 'id = ?', p: [$uname]);
 
 $colss = $quer_id->fetchAll(PDO::FETCH_ASSOC);
 
-$cols = ($cols[0] ?? ($colss[0] ?? getUserInfo()));
+$cols = ($cols[0] ?? ($colss[0] ?? getCurrentUserInfo()));
 
 if (!$cols) {
   _404_();
@@ -43,7 +43,7 @@ if (!$cols) {
 
     <link rel="stylesheet" href="/styles/pages/profile_index.css">
 
-    <?php if ($id == getUserInfo_prop('id')): ?>
+    <?php if ($id == getCurrentUserInfo_prop('id')): ?>
       <script>
         <?php if (hasprofimg($id)): ?>
           function rem_profile() {
@@ -81,11 +81,11 @@ if (!$cols) {
                 <div class="avatar-xxl <?= isOnline($id) ? 'avatar-indicators' : '' ?> avatar-online me-2
               position-relative d-flex justify-content-end
               align-items-end mt-n10 rounded-circle" style='background-color: white;'>
-                  <?php if (getUserInfo_prop('id') == $id): ?>
+                  <?php if (getCurrentUserInfo_prop('id') == $id): ?>
                     <div data-bs-toggle="modal" data-bs-target="#modal">
                     <?php endif; ?>
                     <?= get_prof_img($uname) ?>
-                    <?php if (getUserInfo_prop('id') == $id): ?>
+                    <?php if (getCurrentUserInfo_prop('id') == $id): ?>
                     </div>
                   <?php endif ?>
                 </div>
@@ -93,7 +93,7 @@ if (!$cols) {
 
 
               <div>
-                <?php if (getUserInfo_prop('username') == $uname): ?>
+                <?php if (getCurrentUserInfo_prop('username') == $uname): ?>
                   <div class='d-flex gap-1 d-none d-md-block'>
                     <a href="/signup.php?id=<?= $id ?>" class="text-secondary fs-5"><i class='bi bi-pencil-square'></i></a>
                   </div>
@@ -135,12 +135,12 @@ if (!$cols) {
 
               </div>
               <div class="dropdown">
-                <?php if ($id != getUserInfo_prop('id')): ?>
+                <?php if ($id != getCurrentUserInfo_prop('id')): ?>
                   <span>
-                    <?php if (!follows(getUserInfo_prop('id'), $id)): ?>
+                    <?php if (!follows(getCurrentUserInfo_prop('id'), $id)): ?>
                       <a href="./follow.php?fd=<?= $id ?>" class="btn btn-primary rounded-pill">Follow</a>
                     <?php endif ?>
-                    <?php if (follows(getUserInfo_prop('id'), $id)): ?>
+                    <?php if (follows(getCurrentUserInfo_prop('id'), $id)): ?>
                       <a href="./unfollow.php?fd=<?= $id ?>" class="btn btn-outline-primary rounded-pill"><i
                           class='bi bi-check2'></i> Followed</a>
                     <?php endif ?>
@@ -151,7 +151,7 @@ if (!$cols) {
                   More
                 </a>
                 <ul class="dropdown-menu py-1" style="font-size: 1.05rem;" aria-labelledby="dropdownMenuButton1">
-                  <?php if (getUserInfo_prop('username') == $uname): ?>
+                  <?php if (getCurrentUserInfo_prop('username') == $uname): ?>
                     <li>
                       <a href="/signout.php" class="dropdown-item text-decoration-none text-danger"><i
                           class="bi bi-box-arrow-left"></i>
@@ -159,12 +159,12 @@ if (!$cols) {
                     </li>
                     <li><a href="/dashboard.php" class="dropdown-item"><i class='bi bi-person'></i> Dashboard</a></li>
                   <?php endif; ?>
-                  <?php if (getUserInfo_prop('id') != $id): ?>
+                  <?php if (getCurrentUserInfo_prop('id') != $id): ?>
                     <li>
-                      <?php if (!follows(getUserInfo_prop('id'), $id)): ?>
+                      <?php if (!follows(getCurrentUserInfo_prop('id'), $id)): ?>
                         <a href="./follow.php?fd=<?= $id ?>" class="dropdown-item">Follow</a>
                       <?php endif ?>
-                      <?php if (follows(getUserInfo_prop('id'), $id)): ?>
+                      <?php if (follows(getCurrentUserInfo_prop('id'), $id)): ?>
                         <a href="./unfollow.php?fd=<?= $id ?>" class="dropdown-item text-danger">Unfollow</a>
                       <?php endif ?>
                     </li>
@@ -184,7 +184,7 @@ if (!$cols) {
         </div>
       <?php endif ?>
     </div>
-    <?php if ($id == getUserInfo_prop('id') && hasprofimg($id)): ?>
+    <?php if ($id == getCurrentUserInfo_prop('id') && hasprofimg($id)): ?>
       <!-- Modal -->
       <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
