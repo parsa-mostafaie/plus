@@ -16,7 +16,7 @@ $_SUBMITED = setted('login');
 $__PROCESS__CALLBACK__ = function () {
     global $uname, $pword;
     if (!loginWith($uname, $pword)) {
-        throw new Exception('Login Failed!');
+        throw new Exception('Login Failed! Username or password is incorrect!');
     } else {
         redirect('/');
     }
