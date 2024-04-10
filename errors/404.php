@@ -11,22 +11,28 @@
 </style>
 <script src="/assets/scripts/dynamic.js"></script>
 
-
-<div class="page-wrap d-flex flex-row align-items-center">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12 text-center">
-        <span class="display-1 d-block">404</span>
-        <div class="mb-4 lead" data-app='app'>The page you are looking for <a :href='return this.curl'>
-            <dynamic val='return this.curl'></dynamic>
-          </a> was
-          not found.</div>
-        <a href="/" class="btn btn-link">Back to Home</a>
+<template id='temp'>
+  <div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <span class="display-1 d-block">404</span>
+          <div class="mb-4 lead">
+            The page you are looking for
+            <a :href='return curl'>
+              <dynamic val='let a= document.createElement("div"); a.innerHTML = curl; return a;'></dynamic>
+            </a>
+            was not found.
+          </div>
+          <a href="/" class="btn btn-link">Back to Home</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</template>
+
+<div id="app"></div>
 
 <script defer>
-  new createDynamicApp("app", { curl: window.location.href })
+  new createDynamicApp("app", { curl: window.location.href }, '#temp', '#app')
 </script>
