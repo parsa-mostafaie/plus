@@ -33,7 +33,7 @@ if (!$cols) {
       <?= $fname ?>
       <?= $lname ?> - Profile
     </title>
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/assets/styles/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
@@ -41,7 +41,7 @@ if (!$cols) {
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="/styles/pages/profile_index.css">
+    <link rel="stylesheet" href="/assets/styles/pages/profile_index.css">
 
     <?php if ($id == getCurrentUserInfo_prop('id')): ?>
       <script>
