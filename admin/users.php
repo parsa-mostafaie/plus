@@ -46,7 +46,7 @@ authAdmin();
     <form action="" method='get' class='d-flex gap-1 mb-3'>
       <input type="search" name="search" id="search" class='form-control flex-grow-1'
         value="<?= get_val('search') ?>" />
-      <input type="submit" value="Search" name='search_btn' class='btn btn-success'>
+      <input type="submit" value="Search" class='btn btn-success'>
     </form>
     <div class='table-responsive mb-3'>
       <b>
