@@ -20,9 +20,6 @@ function anchors(selector, { attribute }) {
       }
       return curl;
     };
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.location.href = handle();
-    });
+    el.href = handle();
   });
 }
