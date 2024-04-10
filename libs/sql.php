@@ -4,7 +4,7 @@
 date_default_timezone_set('Asia/Tehran');
 
 if (!isset($db)) {
-    $db = new PDO('mysql:dbname=php_app;charset=utf8', 'root', ''); // *
+    $db = new PDO('mysql:dbname=plus;charset=utf8', 'root', ''); // *
 }
 
 //! Only for strings search
