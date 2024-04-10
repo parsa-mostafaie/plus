@@ -11,9 +11,9 @@ authAdmin();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User List</title>
-  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/assets/styles/style.css">
 
-  <script src='/sparams.js'></script>
+  <script src='/assets/scripts/sparams.js'></script>
 </head>
 
 <body>

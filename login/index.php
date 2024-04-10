@@ -10,10 +10,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/login-form.php'
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/assets/styles/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
-  <script src="/resubmit.js"></script>
+  <script src="/assets/scripts/resubmit.js"></script>
 
 </head>
 

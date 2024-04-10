@@ -12,10 +12,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/signup-form.php
   <title>
     <?= $tu ? "Edit User" : "New User" ?>
   </title>
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="/assets/styles/style.css">
 
-  <script src="resubmit.js"></script>
-  <script src="password.js"></script>
+  <script src="/assets/scripts/resubmit.js"></script>
+  <script src="/assets/scripts/password.js"></script>
 
 </head>
 
