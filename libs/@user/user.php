@@ -47,7 +47,7 @@ function get_prof_url($tid)
 function rem_prof_img($tid)
 {
   unlinkUpload(get_prof_fname($tid));
-  return update_users(condition: "id = ?", set: "profile = ''", params: [$tid]);
+  return update_users(condition: "id = ?", set: "profile = NULL", params: [$tid]);
 }
 
 function get_prof_img($uname, $cattrs = '')
@@ -63,7 +63,7 @@ function hasprofimg($tid)
 {
   $_purl = get_prof_url($tid);
   $purl = $_SERVER['DOCUMENT_ROOT'] . regular_url($_purl);
-  return file_exists($purl) && get_users(cols: 'profile', condition: 'id=?', p: [$tid])->fetchColumn();
+  return file_exists($purl) && get_prof_fname($tid);
 }
 //ENDPART
 
@@ -114,7 +114,8 @@ function last_activity_time__ago__($id)
 {
   return get_users(cols: '(TIMESTAMPDIFF(MINUTE, last_activity_time, NOW()))', condition: 'id = ?', p: [$id])->fetchColumn();
 }
-function isOnline($id){
+function isOnline($id)
+{
   return last_activity_time__ago__($id) <= 2;
 }
 // ENDPART
