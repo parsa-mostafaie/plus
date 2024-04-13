@@ -4,106 +4,124 @@
 date_default_timezone_set('Asia/Tehran');
 
 if (!isset($db)) {
-    $db = new PDO('mysql:dbname=plus;charset=utf8', 'root', ''); // *
+  // $db = new PDO('mysql:dbname=plus;charset=utf8', 'root', ''); // *
+  $db = new Sql_DB();
 }
 
 //! Only for strings search
 function searchCondition($searchInput, ...$colLike)
 {
-    $where = '1 = 1'; //? Conditions to find
-    $qm = 0; //? question Mark Count
-    $sval = ''; //? What to Like
+  $where = '1 = 1'; //? Conditions to find
+  $qm = 0; //? question Mark Count
+  $sval = ''; //? What to Like
 
-    if ($searchInput && $searchInput != '') {
-        $sval = '%' . $searchInput . '%';
-        $where .= ' AND ( 0 = 1 ';
-        foreach ($colLike as $col) {
-            $where .= " OR $col LIKE ? ";
-            $qm++;
-        }
-        $where .= ')';
+  if ($searchInput && $searchInput != '') {
+    $sval = '%' . $searchInput . '%';
+    $where .= ' AND ( 0 = 1 ';
+    foreach ($colLike as $col) {
+      $where .= " OR $col LIKE ? ";
+      $qm++;
     }
+    $where .= ')';
+  }
 
-    return [$where, array_fill(0, $qm, $sval)];
+  return [$where, array_fill(0, $qm, $sval)];
 }
 
 function exec_q($q, $p, $fetch_b = false)
 {
-    global $db;
+  global $db;
 
-    $query = $db->prepare($q);
+  $query = $db->prepare($q);
 
-    $ex = $query->execute($p);
+  $ex = $query->execute($p);
 
-    return $fetch_b ? $query : $ex;
+  return $fetch_b ? $query : $ex;
 }
 
 
 function insert_q($tbl, $keys, $vals, $params)
 {
-    return exec_q(
-        "INSERT INTO $tbl ($keys) VALUES ( $vals )",
-        $params
-    );
+  return exec_q(
+    "INSERT INTO $tbl ($keys) VALUES ( $vals )",
+    $params
+  );
 }
 
 // SELECT $cols FROM $tbl INNER JOIN $join_tbl ON $join_query WHERE $condition GROUP BY $groupby HAVING $having ORDER BY $order LIMIT $lim
 function select_q($tbl, $cols, $join_tbl = null, $join_query = null, $condition = null, $groupby = null, $having = null, $order = null, $lim = null, $p = [])
 {
-    $join = $join_tbl && $join_query ? "INNER JOIN" . $join_tbl . " ON $join_query" : '';
-    $cond = $condition ? "WHERE $condition" : '';
-    $gb = $groupby ? "GROUP BY $groupby" : '';
-    $having = $having ? "HAVING $having" : '';
-    $ob = $order ? "ORDER BY $order" : '';
-    $lm = $lim ? "LIMIT $lim" : '';
+  $join = $join_tbl && $join_query ? "INNER JOIN" . $join_tbl . " ON $join_query" : '';
+  $cond = $condition ? "WHERE $condition" : '';
+  $gb = $groupby ? "GROUP BY $groupby" : '';
+  $having = $having ? "HAVING $having" : '';
+  $ob = $order ? "ORDER BY $order" : '';
+  $lm = $lim ? "LIMIT $lim" : '';
 
-    $query = "SELECT $cols FROM $tbl $join $cond $gb $having $ob $lm";
+  $query = "SELECT $cols FROM $tbl $join $cond $gb $having $ob $lm";
 
-    return exec_q(
-        $query,
-        $p,
-        true
-    );
+  return exec_q(
+    $query,
+    $p,
+    true
+  );
 }
 
 function delete_q($tbl, $condition, $params = [])
 {
-    return exec_q("DELETE FROM $tbl WHERE $condition", $params);
+  return exec_q("DELETE FROM $tbl WHERE $condition", $params);
 }
 
 function update_q($tbl, $condition, $set, $params = [])
 {
-    return exec_q("UPDATE $tbl SET $set WHERE $condition", $params);
+  return exec_q("UPDATE $tbl SET $set WHERE $condition", $params);
 }
 
 // Pagination
 function PaginationQuery($per_page, $page, $fetchMode, ...$SEL_PARAMS)
 {
-    $SEL = $SEL_PARAMS;
+  $SEL = $SEL_PARAMS;
 
-    $SEL['cols'] = 'COUNT(*)';
+  $SEL['cols'] = 'COUNT(*)';
 
-    $count = select_q(...$SEL)->fetchColumn(0);
+  $count = select_q(...$SEL)->fetchColumn(0);
 
-    // Pagination Main
-    $page = intval($page);
+  // Pagination Main
+  $page = intval($page);
 
-    $pages = ceil($count / $per_page);
+  $pages = ceil($count / $per_page);
 
-    if ($page < 1) {
-        $page = 1;
-    }
+  if ($page < 1) {
+    $page = 1;
+  }
 
-    if ($page > $pages) {
-        $page = $pages;
-    }
+  if ($page > $pages) {
+    $page = $pages;
+  }
 
-    $off = ($page - 1) * $per_page;
+  $off = ($page - 1) * $per_page;
 
-    $SEL_PARAMS['lim'] = "$per_page OFFSET $off";
+  $SEL_PARAMS['lim'] = "$per_page OFFSET $off";
 
-    $mn = select_q(...$SEL_PARAMS);
+  $mn = select_q(...$SEL_PARAMS);
 
-    return ['page_count' => $pages, 'res' => $mn->fetchAll($fetchMode), 'current' => $page, 'count' => $count, 'offset' => $off];
+  return ['page_count' => $pages, 'res' => $mn->fetchAll($fetchMode), 'current' => $page, 'count' => $count, 'offset' => $off];
 }
 
+
+// OBJECTs
+class Sql_DB extends PDO
+{
+  private $username;
+  private $password;
+  private $db;
+  private $host;
+  public function __construct($db = 'plus', $username = 'root', $password = '', $host = 'localhost')
+  {
+    $this->db = $db;
+    $this->username = $username;
+    $this->password = $password;
+    $this->host = $host;
+    parent::__construct('mysql:hostname=' . $this->host . ';dbname=' . $this->db . ';charset=utf8', $this->username, $this->password);
+  }
+}
