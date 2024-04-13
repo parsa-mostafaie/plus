@@ -1,4 +1,7 @@
 <?php
+if (!isset($HOME_URL)) {
+  $HOME_URL = '/';
+}
 //? libs:init.php v0.5.1
 //! Publics
 include_once 'array.php';
