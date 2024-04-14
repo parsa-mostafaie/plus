@@ -102,8 +102,8 @@ function delete_users($id)
 // REQUIRES: users table with: last_activity_time, lu_browser
 function user_actived($id)
 {
-  update_q('users', 'id = ' . $id, 'lu_browser = ?', [getBrowser()['name']]);
-  update_q('users', 'id = ' . $id, 'last_activity_time = NOW()');
+  update_q('users', 'id = ?', 'lu_browser = ?', [$id, getBrowser()['name']]);
+  update_q('users', 'id = ?', 'last_activity_time = NOW()', [$id]);
   return true;
 }
 function last_activity_time($id)

@@ -1,6 +1,6 @@
 <?php
 if (!isset($HOME_URL)) {
-  $HOME_URL = '/';
+  $HOME_URL = '';
 }
 //? libs:init.php v0.5.1
 //! Publics
@@ -28,9 +28,16 @@ function redirect($url)
 }
 function hash_pass(string $str)
 {
+  global $__unsafe__hash__pass__disable;
+  if ($__unsafe__hash__pass__disable)
+    return $str;
   return hash('sha256', $str);
 }
-
+function c_url($url)
+{
+  global $HOME_URL;
+  return regular_url($HOME_URL . $url);
+}
 function _404_()
 {
   header('HTTP/1.1 404 Not Found', true, 404);

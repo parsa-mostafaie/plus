@@ -12,8 +12,8 @@ function loginWith($username, $pass)
   if ($id) {
     $id = $id->fetchColumn();
     if (canLoginWith($id, $pass)) {
-      $_SESSION['uid'] = $id;
-      $_SESSION['pass'] = $pass;
+      set_session('uid', $id);
+      set_session('pass', $pass);
       return true;
     }
   }
@@ -35,7 +35,7 @@ function canLoginWith($id, $pass)
   if ($user) {
     $user_pass = $user->fetchColumn();
 
-    if (hash_pass($pass) == $user_pass) {
+    if (hash_pass($pass) === $user_pass) {
       return true;
     }
   }
@@ -63,6 +63,6 @@ function getCurrentUserInfo_prop($name)
 
 function signout()
 {
-  unset($_SESSION['uid'], $_SESSION['pass']);
+  session__unset(false, 'pass', 'uid');
 }
 // ENDPART
