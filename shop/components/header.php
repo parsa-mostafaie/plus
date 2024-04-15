@@ -4776,7 +4776,7 @@
           <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
             data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
             data-kt-menu-placement="bottom-end">
-            <?= get_prof_img($user['ID']) ?>
+            <?= get_prof_img($user['username']) ?>
           </div>
           <!--begin::کاربر account menu-->
           <div
@@ -4787,7 +4787,7 @@
               <div class="menu-content d-flex align-items-center px-3">
                 <!--begin::Avatar-->
                 <div class="symbol symbol-50px me-5">
-                  <?= get_prof_img($user['ID']) ?>
+                  <?= get_prof_img($user['username']) ?>
 
                 </div>
                 <!--end::Avatar-->
