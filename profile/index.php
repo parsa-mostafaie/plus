@@ -74,7 +74,7 @@ if (!$cols) {
           <!-- <div class="pt-20 rounded-top" style="background: #ffaabb;
         background-size: cover;">
           </div> -->
-          <?=get_pbg_img($uname)?>
+          <?= get_pbg_img($uname) ?>
           <div class="card rounded-bottom smooth-shadow-sm" style='border-radius:0;'>
             <div class="d-flex align-items-center justify-content-between
           pt-4 pb-6 px-4">

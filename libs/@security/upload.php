@@ -44,7 +44,7 @@ function uploadFile_secure(
     }
     unlink($filepath); // Delete the temp file
 
-    return $filename . '.' . $extension;
+    return 'uploads/' . $filename . '.' . $extension;
 }
 function unlinkUpload($fname)
 {
@@ -55,5 +55,5 @@ function unlinkUpload($fname)
 
 function urlOfUpload($fname)
 {
-    return $fname ? '/uploads' . '/' . $fname : null;
+    return $fname ? '/' . $fname : null;
 }

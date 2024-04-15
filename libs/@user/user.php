@@ -36,19 +36,14 @@ function set_prof_image($tid, $name)
   }
 }
 
-function get_prof_fname($tid)
-{
-  return get_users(cols: 'profile', condition: "id = '$tid'")->fetchColumn();
-}
-
 function get_prof_url($tid)
 {
-  return urlOfUpload(get_prof_fname($tid));
+  return urlOfUpload(get_users(cols: 'profile', condition: "id = '$tid'")->fetchColumn());
 }
 
 function rem_prof_img($tid)
 {
-  unlinkUpload(get_prof_fname($tid));
+  unlinkUpload(get_prof_url($tid));
   return update_users(condition: "id = ?", set: "profile = NULL", params: [$tid]);
 }
 
@@ -63,7 +58,7 @@ function hasprofimg($tid)
 {
   $_purl = get_prof_url($tid);
   $purl = $_SERVER['DOCUMENT_ROOT'] . regular_url($_purl);
-  return file_exists($purl) && get_prof_fname($tid);
+  return file_exists($purl) && get_prof_url($tid);
 }
 //ENDPART
 
@@ -77,19 +72,14 @@ function set_pbg_image($tid, $name)
   }
 }
 
-function get_pbg_fname($tid)
-{
-  return get_users(cols: 'pbg', condition: "id = '$tid'")->fetchColumn();
-}
-
 function get_pbg_url($tid)
 {
-  return urlOfUpload(get_pbg_fname($tid));
+  return urlOfUpload(get_users(cols: 'pbg', condition: "id = '$tid'")->fetchColumn());
 }
 
 function rem_pbg_img($tid)
 {
-  unlinkUpload(get_pbg_fname($tid));
+  unlinkUpload(get_pbg_url($tid));
   return update_users(condition: "id = ?", set: "pbg = NULL", params: [$tid]);
 }
 
@@ -104,7 +94,7 @@ function has_pbg_img($tid)
 {
   $_purl = get_pbg_url($tid);
   $purl = $_SERVER['DOCUMENT_ROOT'] . regular_url($_purl);
-  return file_exists($purl) && get_pbg_fname($tid);
+  return file_exists($purl) && get_pbg_url($tid);
 }
 //ENDPART
 
