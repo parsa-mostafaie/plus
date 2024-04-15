@@ -71,9 +71,10 @@ if (!$cols) {
       <div class="row align-items-center">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
           <!-- Bg -->
-          <div class="pt-20 rounded-top" style="background: #ffaabb;
+          <!-- <div class="pt-20 rounded-top" style="background: #ffaabb;
         background-size: cover;">
-          </div>
+          </div> -->
+          <?=get_pbg_img($uname)?>
           <div class="card rounded-bottom smooth-shadow-sm" style='border-radius:0;'>
             <div class="d-flex align-items-center justify-content-between
           pt-4 pb-6 px-4">

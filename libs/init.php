@@ -82,3 +82,22 @@ function regular_url($_purl)
 {
   return str_replace('/', DIRECTORY_SEPARATOR, $_purl);
 }
+
+function imageComponent($purl, $cattr = '', $undefined = '/default_uploads/unknown.png', $echo = false, $ue_src = true)
+{
+  $ud = $ue_src ? 'this.src' : 'this.style.background';
+  $ud = "$ud = '$undefined';";
+  $str = '<img src="' . $purl . '" onerror="this.onerror=null;' . $ud . '" alt="Image" ' . $cattr . '>
+';
+  if ($echo)
+    echo $str;
+  return $str;
+}
+
+function divImage($purl, $cattr, $undefined_color = 'ffaabb', $echo = false)
+{
+  $str = "<div style='background: url($purl), #$undefined_color; background-size: cover' $cattr></div>";
+  if ($echo)
+    echo $str;
+  return $str;
+}

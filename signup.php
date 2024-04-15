@@ -13,6 +13,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/signup-form.php
     <?= $tu ? "Edit User" : "New User" ?>
   </title>
   <link rel="stylesheet" href="/assets/styles/style.css">
+  <style>
+    * {
+      max-height: unset !important;
+    }
+  </style>
 
   <script src="/assets/scripts/resubmit.js"></script>
   <script src="/assets/scripts/password.js"></script>
@@ -55,6 +60,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/signup-form.php
         <label class="form-label" for="file">Profile Photo:</label>
         <input type="file" class="form-control" name='profimg' id="file" accept="image/png, image/jpeg" />
       </div>
+      <div class='mb-3'>
+        <label class="form-label" for="file2">Profile Background:</label>
+        <input type="file" class="form-control" name='pbg' id="file2" accept="image/png, image/jpeg" />
+      </div>
       <div class="mb-3">
         <textarea class="form-control" id="description" name="description" placeholder="Description" rows='8'
           style='resize: none; height: auto;'><?= $desc ?></textarea>
@@ -64,7 +73,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/signup-form.php
     <button type="submit" class="btn btn-primary" name="signup">
       <?= $tu ? 'Submit Edition' : 'Signup' ?>
     </button>
-    <br><br>
+    <div class="mb-1"></div>
     <?php if (!$tu): ?>
       Have Account? <a href="login.php">Login</a>
     <?php endif ?>

@@ -52,12 +52,12 @@ $__PROCESS__CALLBACK__ = function () {
             params: [$uname, $lname, $pword !== '' ? hash_pass($pword) : $prev_pword, $mail, $desc],
         );
         set_prof_image($tid, 'profimg');
+        set_pbg_image($tid, 'pbg');
         if ($pword !== '') {
             loginWith($uname, $pword);
         }
         redirect('/profile/');
     }
-    set_prof_image($tid, 'profimg');
     add_user($fname, $lname, $uname, $pword);
 };
 
