@@ -14,7 +14,7 @@ function set_session($name, $value, $public = false)
 
 function session__unset($public = false, ...$val)
 {
-    foreach ($val as $n => $v) {
+    foreach ($val as $n) {
         unset($_SESSION[session_local_name($n, $public)]);
     }
 }
