@@ -45,20 +45,35 @@ if (!$cols) {
 
     <?php if ($id == getCurrentUserInfo_prop('id')): ?>
       <script>
-        <?php if (hasprofimg($id)): ?>
-          function rem_profile() {
-            swal({
-              title: "Are you sure?",
-              text: "Are you sure that you want to Remove your profile photo?",
-              icon: "warning",
-              buttons: {
-                cancel: true,
-                confirm: true
+        <?php if (hasprofimg($id) || has_pbg_img($id)): ?>
+          function rem_profile(pbg) {
+            if (!pbg) {
+              swal({
+                title: "Are you sure?",
+                text: "Are you sure that you want to Remove your profile photo?",
+                icon: "warning",
+                buttons: {
+                  cancel: true,
+                  confirm: true
+                }
               }
+              ).then(sure => {
+                sure && (location.href = '/profile/remprof.php');
+              });
+            } else {
+              swal({
+                title: "Are you sure?",
+                text: "Are you sure that you want to Remove your cover photo?",
+                icon: "warning",
+                buttons: {
+                  cancel: true,
+                  confirm: true
+                }
+              }
+              ).then(sure => {
+                sure && (location.href = '/profile/rempbg.php');
+              });
             }
-            ).then(sure => {
-              sure && (location.href = '/profile/remprof.php');
-            });
           }
         <?php endif ?>
       </script>
@@ -74,7 +89,13 @@ if (!$cols) {
           <!-- <div class="pt-20 rounded-top" style="background: #ffaabb;
         background-size: cover;">
           </div> -->
-          <?= get_pbg_img($uname) ?>
+          <?php if (getCurrentUserInfo_prop('id') == $id): ?>
+            <div data-bs-toggle="modal" data-bs-target="#modal">
+            <?php endif; ?>
+            <?= get_pbg_img($uname) ?>
+            <?php if (getCurrentUserInfo_prop('id') == $id): ?>
+            </div>
+          <?php endif ?>
           <div class="card rounded-bottom smooth-shadow-sm" style='border-radius:0;'>
             <div class="d-flex align-items-center justify-content-between
           pt-4 pb-6 px-4">
@@ -109,7 +130,10 @@ if (!$cols) {
                     <?= $fname ?>
                     <?= $lname ?>
                     <?php if ($isAdmin == 1): ?>
-                      <i class='bi bi-patch-check-fill text-primary'></i>
+                      <i class='bi bi-patch-check-fill' style='
+                          background: -webkit-linear-gradient(#ff5, #dd6);
+                          -webkit-background-clip: text;
+                          -webkit-text-fill-color: transparent;' title='admin'></i>
                     <?php endif ?>
                   </span>
 
@@ -185,22 +209,28 @@ if (!$cols) {
         </div>
       <?php endif ?>
     </div>
-    <?php if ($id == getCurrentUserInfo_prop('id') && hasprofimg($id)): ?>
+    <?php if ($id == getCurrentUserInfo_prop('id')): ?>
       <!-- Modal -->
       <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">Profile Photo</h5>
+              <h5 class="modal-title" id="modalLabel">Profile/Cover Photo</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               Actions you can do:
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a type="button" class="btn btn-danger" onclick='rem_profile()'>Remove Profile
-                Photo</a>
+            <div class="modal-footer gap-1">
+              <a type="button" class="btn btn-secondary m-0 flex-grow-1" data-bs-dismiss="modal">Close</a>
+              <?php if (hasprofimg($id)): ?>
+                <a type="button" class="btn btn-danger m-0 flex-grow-1" onclick='rem_profile()'>Remove Profile
+                  Photo</a>
+              <?php endif; ?>
+              <?php if (has_pbg_img($id)): ?>
+                <a type="button" class="btn btn-warning m-0 flex-grow-1" onclick='rem_profile(true)'>Remove Cover
+                  Photo</a>
+              <?php endif ?>
             </div>
           </div>
         </div>
