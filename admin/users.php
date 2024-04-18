@@ -14,6 +14,7 @@ authAdmin();
   <link rel="stylesheet" href="/assets/styles/style.css">
 
   <script src='/assets/scripts/sparams.js'></script>
+  <script src='/assets/scripts/grk.js'></script>
 </head>
 
 <body>
@@ -92,12 +93,12 @@ authAdmin();
               <td>
                 <div class='d-flex gap-1 h-100'>
                   <a href='/signup.php?id=<?= $user["id"] ?>' class='btn btn-primary'>Edit</a>
-                  <a href='./delete_user.php?uid=<?= $user["id"]; ?>' class='btn btn-danger'>Delete</a>
+                  <a data-href='./delete_user.php?uid=<?= $user["id"]; ?>' class='btn btn-danger'>Delete</a>
                   <?php if ($user['admin'] == 0) { ?>
-                    <a href="./grow.php?uid=<?= $user['id'] ?>" class='btn btn-success'>Grow</a>
+                    <a data-href="./grow.php?uid=<?= $user['id'] ?>" class='btn btn-success'>Grow</a>
                   <?php } ?>
                   <?php if ($user['admin'] == 1 && $user['id'] != getCurrentUserInfo_prop('id')) { ?>
-                    <a href="./shrink.php?uid=<?= $user['id'] ?>" class='btn btn-warning'>Shrink</a>
+                    <a data-href="./shrink.php?uid=<?= $user['id'] ?>" class='btn btn-warning'>Shrink</a>
                   <?php } ?>
                 </div>
               </td>
@@ -146,6 +147,7 @@ authAdmin();
         page: (pv, url) => setUrlParams(url, 'page', pv)
       }
     })
+    data_href_init();
   </script>
 </body>
 

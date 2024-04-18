@@ -8,6 +8,7 @@ include_once 'array.php';
 include_once '@form/processors/@processor.php';
 include_once '@form/get_post.php';
 include_once '@security/upload.php';
+include_once '@security/security.php';
 include_once 'session.php';
 include_once 'sql.php';
 include_once '@user/auth.php';
