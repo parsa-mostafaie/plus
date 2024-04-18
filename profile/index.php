@@ -132,7 +132,7 @@ if (!$cols) {
                     <?php if ($isAdmin == 1): ?>
                       <i class='bi bi-patch-check-fill' style='
                           background: -webkit-linear-gradient(#ff5, #dd6);
-                          -webkit-background-clip: text;
+                          background-clip: text;
                           -webkit-text-fill-color: transparent;' title='admin'></i>
                     <?php endif ?>
                   </span>
