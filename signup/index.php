@@ -75,7 +75,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/signup-form.php
         </button>
         <div class="mb-1"></div>
         <?php if (!$tu): ?>
-            Have Account? <a href="login.php">Login</a>
+            Have Account? <a href="/login.php">Login</a>
         <?php endif ?>
     </form>
     <script>
