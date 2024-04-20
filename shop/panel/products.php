@@ -248,7 +248,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                       <!--begin::Thumbnail-->
                       <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">
                         <span class="symbol-label"
-                          style="background-image:url(<?php echo urlOfUpload ($product['thumbnail']); ?>);"></span>
+                          style="background-image:url(<?php echo urlOfUpload($product['thumbnail']); ?>);"></span>
                       </a>
                       <!--end::Thumbnail-->
                       <div class="ms-5">
@@ -278,55 +278,55 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                       $sale_price = (100 - $product['discount_percent']) / 100 * $product['price'];
                     }
 
-                    echo '<ins class="' . $price_class . '">' . number_format($sale_price / 10) . '</ins>';
+                    echo '<br/><ins class="' . $price_class . '">' . number_format($sale_price / 10) . '</ins>';
                     ?>
-                  </td>
-                  <td class="text-end pe-0" data-order="rating-5">
-                    <div class="rating justify-content-end">
-                      <div class="rating-label checked">
-                        <i class="ki-duotone ki-ستاره fs-6"></i>
+                    </td>
+                    <td class="text-end pe-0" data-order="rating-5">
+                      <div class="rating justify-content-end">
+                        <div class="rating-label checked">
+                          <i class="ki-duotone ki-ستاره fs-6"></i>
+                        </div>
+                        <div class="rating-label checked">
+                          <i class="ki-duotone ki-ستاره fs-6"></i>
+                        </div>
+                        <div class="rating-label checked">
+                          <i class="ki-duotone ki-ستاره fs-6"></i>
+                        </div>
+                        <div class="rating-label checked">
+                          <i class="ki-duotone ki-ستاره fs-6"></i>
+                        </div>
+                        <div class="rating-label checked">
+                          <i class="ki-duotone ki-ستاره fs-6"></i>
+                        </div>
                       </div>
-                      <div class="rating-label checked">
-                        <i class="ki-duotone ki-ستاره fs-6"></i>
+                    </td>
+                    <td class="text-end pe-0" data-order="در انتظار">
+                      <!--begin::Badges-->
+                      <div class="badge badge-light-primary">در انتظار</div>
+                      <!--end::Badges-->
+                    </td>
+                    <td class="text-end">
+                      <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">عملیات
+                        <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
+                      <!--begin::Menu-->
+                      <div
+                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="menu-link px-3"></a>
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                          <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row">حذف</a>
+                        </div>
+                        <!--end::Menu item-->
                       </div>
-                      <div class="rating-label checked">
-                        <i class="ki-duotone ki-ستاره fs-6"></i>
-                      </div>
-                      <div class="rating-label checked">
-                        <i class="ki-duotone ki-ستاره fs-6"></i>
-                      </div>
-                      <div class="rating-label checked">
-                        <i class="ki-duotone ki-ستاره fs-6"></i>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-end pe-0" data-order="در انتظار">
-                    <!--begin::Badges-->
-                    <div class="badge badge-light-primary">در انتظار</div>
-                    <!--end::Badges-->
-                  </td>
-                  <td class="text-end">
-                    <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                      data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">عملیات
-                      <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                    <!--begin::Menu-->
-                    <div
-                      class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                      data-kt-menu="true">
-                      <!--begin::Menu item-->
-                      <div class="menu-item px-3">
-                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="menu-link px-3"></a>
-                      </div>
-                      <!--end::Menu item-->
-                      <!--begin::Menu item-->
-                      <div class="menu-item px-3">
-                        <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row">حذف</a>
-                      </div>
-                      <!--end::Menu item-->
-                    </div>
-                    <!--end::Menu-->
-                  </td>
-                </tr>
+                      <!--end::Menu-->
+                    </td>
+                  </tr>
               <?php endforeach; ?>
               <tr>
                 <td>
