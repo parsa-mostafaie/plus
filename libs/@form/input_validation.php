@@ -261,7 +261,7 @@ const FILTERS = [
 function sanitize(array $inputs, array $fields = [], int $default_filter = FILTER_SANITIZE_STRING, array $filters = FILTERS, bool $trim = true): array
 {
   if ($fields) {
-    $options = array_map(fn($field) => $filters[$field], $fields);
+    $options = array_map(fn($field) => $filters[$field], array_trim($fields));
     $data = filter_var_array($inputs, $options);
   } else {
     $data = filter_var_array($inputs, $default_filter);
