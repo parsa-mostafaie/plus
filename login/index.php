@@ -32,12 +32,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/login-form.php'
               <div class="form-group py-2">
                 <div class="input-field"> <span class="far fa-user p-2"></span> <input type="text"
                     placeholder="Username or Email" required value='<?= $uname ?? '' ?>' name='uname'> </div>
+                <span class="text-danger"><?= errors('username') ?></span>
               </div>
               <div class="form-group py-1 pb-2">
                 <div class="input-field"> <span class="fas fa-lock px-2"></span> <input type="password"
                     placeholder="Enter your Password" value="<?= $pword ?? '' ?>" name="pword" required> <button
                     class="btn bg-white text-muted" id='ptog' type='button'> <span class="far fa-eye"></span>
                   </button> </div>
+                <span class="text-danger"><?= errors('password') ?></span>
               </div>
               <button type="submit" name='login' class="btn btn-primary w-100 d-block mt-3">Login</button>
               <div class="text-center pt-4 text-muted">Don't have an account? <a href="/signup.php">Sign up</a>

@@ -8,10 +8,12 @@ $uname = trim($uname);
 
 $_inps_arr = [$uname, $pword];
 
-$_COND = !array_any($_inps_arr, fn($val) => strlen($val) == 0);
+[$inputs, $errors] = filter(['username' => $uname, 'password' => $pword], ['username' => 'string | required', 'password' => 'string | required']);
 
 $_SUBMITED = setted('login');
 
+$errors = $_SUBMITED ? $errors : [];
+$_COND = count($errors) == 0;
 // PROCESSOR
 $__PROCESS__CALLBACK__ = function () {
     global $uname, $pword;
@@ -27,3 +29,9 @@ $__PROCESS__SUCCESS__ = function () {
 };
 
 $__PROCESS__FAILED__ = $__DEFAULT__PROCESS_FAILED;
+
+function errors($field)
+{
+    global $errors;
+    return isset($errors[$field]) ? $errors[$field] : '';
+}
