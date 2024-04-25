@@ -1,0 +1,32 @@
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+.card {
+  position: relative;
+}
+
+.card .discount-badge {
+  background: red;
+  color: #fff;
+  display: inline-block;
+  position: absolute;
+  padding: 2px 10px;
+  border-radius: 7px 7px 7px 0;
+  top: 3px;
+  right: 3px;
+}
+
+del,
+ins {
+  padding: 5px;
+  text-decoration: none;
+}
+
+span {
+  background: red;
+  color: white;
+  border-radius: 8px;
+  padding: 3px 10px;
+}

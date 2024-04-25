@@ -264,7 +264,7 @@ $statuses = [
                   <td>
                     <div class="d-flex align-items-center">
                       <!--begin::Thumbnail-->
-                      <a href="<?php echo c_url('/panel/product.php?product_id=' . $product['ID']); ?>"
+                      <a href="<?php echo c_url('/product.php?id=' . $product['ID']); ?>"
                         class="symbol symbol-50px">
                         <span class="symbol-label"
                           style="background-image:url(<?php echo urlOfUpload($product['thumbnail']); ?>);"></span>
@@ -272,7 +272,7 @@ $statuses = [
                       <!--end::Thumbnail-->
                       <div class="ms-5">
                         <!--begin::Title-->
-                        <a href="<?php echo c_url('/panel/product.php?product_id=' . $product['ID']); ?>"
+                        <a href="<?php echo c_url('/product.php?id=' . $product['ID']); ?>"
                           class="text-gray-800 text-hover-primary fs-5 fw-bold"
                           data-kt-ecommerce-product-filter="product_name">
                           <?php echo $product['title']; ?>
