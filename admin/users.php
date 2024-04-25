@@ -21,7 +21,7 @@ authAdmin();
   <?php
 
   //? SEARCH IN 'firstname lastname' AND username
-  [$where, $p] = searchCondition(get_val('search'), "CONCAT(firstname, ' ', lastname)", 'username');
+  [$where, $p] = searchText_Condition(get_val('search'), "CONCAT(firstname, ' ', lastname)", 'username');
 
   $current_page = get_val('page');
 
@@ -70,39 +70,39 @@ authAdmin();
         <tbody>
           <?php $i = $users_pagination['offset']; ?>
           <?php foreach ($users_pagination['res'] as $user): ?>
-            <tr>
-              <?php foreach ($user as $key => $value): ?>
-                <?php if ($key !== 'admin'): ?>
-                  <?php $ia = $key == "username" && $user["admin"] == 1 ?>
-                  <td class='<?= $ia ? "text-primary fw-bold" : "" ?>' title='<?= $key == "id" ? "(#$value)" : "" ?>'>
-                    <?php if ($key == 'username'): ?>
-                      <a href='/profile/?user=<?= $value ?>' target='blank'>
-                      <?php endif ?>
-                      <?= ($key == "username" ? '@' : '') . ($key !== 'id' ? $value : ++$i); ?>
-                      <?php if ($key == 'username'): ?>
-                      </a>
+              <tr>
+                <?php foreach ($user as $key => $value): ?>
+                    <?php if ($key !== 'admin'): ?>
+                        <?php $ia = $key == "username" && $user["admin"] == 1 ?>
+                        <td class='<?= $ia ? "text-primary fw-bold" : "" ?>' title='<?= $key == "id" ? "(#$value)" : "" ?>'>
+                          <?php if ($key == 'username'): ?>
+                              <a href='/profile/?user=<?= $value ?>' target='blank'>
+                            <?php endif ?>
+                            <?= ($key == "username" ? '@' : '') . ($key !== 'id' ? $value : ++$i); ?>
+                            <?php if ($key == 'username'): ?>
+                              </a>
+                          <?php endif ?>
+                        </td>
+                        <?php if ($key == "date"): ?>
+                            <td style='direction: rtl'>
+                              <?= jdate('d F Y', strtotime($value)); ?>
+                            </td>
+                        <?php endif ?>
                     <?php endif ?>
-                  </td>
-                  <?php if ($key == "date"): ?>
-                    <td style='direction: rtl'>
-                      <?= jdate('d F Y', strtotime($value)); ?>
-                    </td>
-                  <?php endif ?>
-                <?php endif ?>
-              <?php endforeach ?>
-              <td>
-                <div class='d-flex gap-1 h-100'>
-                  <a href='/signup.php?id=<?= $user["id"] ?>' class='btn btn-primary'>Edit</a>
-                  <a data-href='./delete_user.php?uid=<?= $user["id"]; ?>' class='btn btn-danger'>Delete</a>
-                  <?php if ($user['admin'] == 0) { ?>
-                    <a data-href="./grow.php?uid=<?= $user['id'] ?>" class='btn btn-success'>Grow</a>
-                  <?php } ?>
-                  <?php if ($user['admin'] == 1 && $user['id'] != getCurrentUserInfo_prop('id')) { ?>
-                    <a data-href="./shrink.php?uid=<?= $user['id'] ?>" class='btn btn-warning'>Shrink</a>
-                  <?php } ?>
-                </div>
-              </td>
-            </tr>
+                <?php endforeach ?>
+                <td>
+                  <div class='d-flex gap-1 h-100'>
+                    <a href='/signup.php?id=<?= $user["id"] ?>' class='btn btn-primary'>Edit</a>
+                    <a data-href='./delete_user.php?uid=<?= $user["id"]; ?>' class='btn btn-danger'>Delete</a>
+                    <?php if ($user['admin'] == 0) { ?>
+                        <a data-href="./grow.php?uid=<?= $user['id'] ?>" class='btn btn-success'>Grow</a>
+                    <?php } ?>
+                    <?php if ($user['admin'] == 1 && $user['id'] != getCurrentUserInfo_prop('id')) { ?>
+                        <a data-href="./shrink.php?uid=<?= $user['id'] ?>" class='btn btn-warning'>Shrink</a>
+                    <?php } ?>
+                  </div>
+                </td>
+              </tr>
           <?php endforeach ?>
         </tbody>
       </table>
@@ -111,31 +111,31 @@ authAdmin();
     <nav>
       <ul class="pagination">
         <?php if ($current_page > 1): ?>
-          <li class="page-item">
-            <a class="page-link" href="#" page="<?= $current_page - 1 ?>" tabindex="-1">Previous</a>
-          </li>
+            <li class="page-item">
+              <a class="page-link" href="#" page="<?= $current_page - 1 ?>" tabindex="-1">Previous</a>
+            </li>
         <?php endif ?>
 
         <?php for ($i = 1; $i <= $pages; $i++): ?>
-          <?php if ($i == $current_page) { ?>
-            <li class='page-item active'>
-              <span class='page-link'>
-                <?= $i ?>
-              </span>
-            </li>
-          <?php } else { ?>
-            <li class='page-item'>
-              <a class='page-link' href="#" page='<?= $i ?>'>
-                <?= $i ?>
-              </a>
-            </li>
-          <?php } ?>
+            <?php if ($i == $current_page) { ?>
+                <li class='page-item active'>
+                  <span class='page-link'>
+                    <?= $i ?>
+                  </span>
+                </li>
+            <?php } else { ?>
+                <li class='page-item'>
+                  <a class='page-link' href="#" page='<?= $i ?>'>
+                    <?= $i ?>
+                  </a>
+                </li>
+            <?php } ?>
         <?php endfor ?>
 
         <?php if ($current_page < $pages): ?>
-          <li class="page-item">
-            <a class="page-link" href="#" page="<?= $current_page + 1 ?>">Next</a>
-          </li>
+            <li class="page-item">
+              <a class="page-link" href="#" page="<?= $current_page + 1 ?>">Next</a>
+            </li>
         <?php endif ?>
       </ul>
     </nav>

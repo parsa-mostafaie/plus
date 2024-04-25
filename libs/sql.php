@@ -14,7 +14,7 @@ function db(...$args)
 }
 
 //! Only for strings search
-function searchCondition($searchInput, ...$colLike)
+function searchText_Condition($searchInput, ...$cols)
 {
   $where = '1 = 1'; //? Conditions to find
   $qm = 0; //? question Mark Count
@@ -23,7 +23,7 @@ function searchCondition($searchInput, ...$colLike)
   if ($searchInput && $searchInput != '') {
     $sval = '%' . $searchInput . '%';
     $where .= ' AND ( 0 = 1 ';
-    foreach ($colLike as $col) {
+    foreach ($cols as $col) {
       $where .= " OR $col LIKE ? ";
       $qm++;
     }
