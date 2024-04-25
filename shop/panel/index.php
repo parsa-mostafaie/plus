@@ -1,3 +1,5 @@
+<?php $supermenu = 'dashboard';
+$current_page = 'dashboard'; ?>
 <?php include ('components/header.php'); ?>
 <!--begin::Content wrapper-->
 <div class="d-flex flex-column flex-column-fluid">

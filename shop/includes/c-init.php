@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
+include 'functions-product.php';
 
 $__unsafe__hash__pass__disable = true;
 
