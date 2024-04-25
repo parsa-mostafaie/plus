@@ -1,6 +1,11 @@
 <?php
-if (!isset($HOME_URL)) {
-  $HOME_URL = '';
+function HOME_URL($set = null)
+{
+  static $hu = '';
+  if ($set) {
+    $hu = $set;
+  }
+  return $hu;
 }
 //? libs:init.php v0.5.1
 //! Publics
@@ -37,8 +42,7 @@ function hash_pass(string $str)
 }
 function c_url($url)
 {
-  global $HOME_URL;
-  return regular_url($HOME_URL . $url);
+  return regular_url(HOME_URL() . $url);
 }
 function _404_()
 {

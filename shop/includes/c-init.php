@@ -5,6 +5,6 @@ $__unsafe__hash__pass__disable = true;
 
 if (!defined('shop')) {
     define('shop', true);
-    $HOME_URL = '/shop';
+    HOME_URL('/shop');
     db('plus_shop');
 }
