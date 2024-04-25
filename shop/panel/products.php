@@ -1,7 +1,7 @@
 <?php include ('components/header.php'); ?>
 <?php
 $sql = "SELECT * FROM products ORDER BY ID DESC LIMIT 200 OFFSET 0";
-$stmt = $db->query($sql);
+$stmt = db()->query($sql);
 
 $stmt = select_q('products', '*', order: 'id DESC', lim: '200 OFFSET 0');
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);

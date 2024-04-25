@@ -12,7 +12,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 $_SUCCESS = false;
 
 $__DEFAULT__PROCESS_FAILED = function (Exception $ex, $isPDO) {
-  global $db;
   $err = $ex instanceof PDOException ? $ex->errorInfo[2] : null;
   $msg = $isPDO ? "<i>An PDO Exception was thrown: $err</i>" : $ex->getMessage();
   echo "<div class='container alert alert-danger'><b>Failed!</b> $msg</div>";

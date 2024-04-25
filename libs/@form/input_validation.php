@@ -206,14 +206,13 @@ function is_secure(array $data, string $field): bool
  */
 function is_unique(array $data, string $field, string $table, string $column): bool
 {
-  global $db;
   if (!isset($data[$field])) {
     return true;
   }
 
   $sql = "SELECT $column FROM $table WHERE $column = :value";
 
-  $stmt = $db->prepare($sql);
+  $stmt = db()->prepare($sql);
   $stmt->bindValue(":value", $data[$field]);
 
   $stmt->execute();

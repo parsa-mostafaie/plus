@@ -3,9 +3,14 @@
 
 date_default_timezone_set('Asia/Tehran');
 
-if (!isset($db)) {
-  // $db = new PDO('mysql:dbname=plus;charset=utf8', 'root', ''); // *
-  $db = new Sql_DB();
+function db(...$args)
+{
+  static $db;
+  if (!isset($db) || count($args) > 0) {
+    // $db = new PDO('mysql:dbname=plus;charset=utf8', 'root', ''); // *
+    $db = new Sql_DB(...$args);
+  }
+  return $db;
 }
 
 //! Only for strings search
@@ -30,9 +35,7 @@ function searchCondition($searchInput, ...$colLike)
 
 function exec_q($q, $p, $fetch_b = false)
 {
-  global $db;
-
-  $query = $db->prepare($q);
+  $query = db()->prepare($q);
 
   $ex = $query->execute($p);
 
