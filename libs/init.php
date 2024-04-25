@@ -19,6 +19,7 @@ include_once 'sql.php';
 include_once '@user/auth.php';
 include_once "info.php";
 include_once '@form/input_validation.php';
+include_once 'headers.php';
 
 //! For This Project
 include_once '@user/user.php';
@@ -28,11 +29,6 @@ include_once '@user/follow.php';
 //! ADMIN
 include_once __DIR__ . "/../admin/lib.php";
 
-function redirect($url)
-{
-  header('Location: ' . $url);
-  die();
-}
 function hash_pass(string $str)
 {
   global $__unsafe__hash__pass__disable;
@@ -43,11 +39,6 @@ function hash_pass(string $str)
 function c_url($url)
 {
   return regular_url(HOME_URL() . $url);
-}
-function _404_()
-{
-  header('HTTP/1.1 404 Not Found', true, 404);
-  die();
 }
 function number_format_short($n, $precision = 1)
 {
