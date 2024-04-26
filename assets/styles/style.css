@@ -6,7 +6,6 @@
 
 * {
   box-sizing: border-box;
-  max-height: 100vh !important;
 }
 
 @media screen and (max-width: 576px) {
@@ -39,4 +38,6 @@
 
 body {
   font-family: "Montserrat", "Vazirmatn", sans-serif;
+
+  max-height: 100vh !important;
 }
