@@ -55,5 +55,5 @@ function unlinkUpload($fname)
 
 function urlOfUpload($fname)
 {
-    return $fname ? '/' . $fname : null;
+    return $fname ? c_url('/' . $fname) : null;
 }
