@@ -3,7 +3,7 @@
 function redirect_secure($path, $back_addr = null, $back = false, $gen_only = false)
 {
   [$u, $p] = useRedirectCode();
-  $back = str_replace('?', '%3F', (empty($back_addr) ? null : $back_addr) ?? $_SERVER['REQUEST_URI']);
+  $back = urlencode((empty($back_addr) ? null : $back_addr) ?? $_SERVER['REQUEST_URI']);
   $q = "&u=$u&p=$p&back=$back";
   $g = str_contains($path, '?') ? $path . $q : $path . "?$q";
   if ($gen_only)
