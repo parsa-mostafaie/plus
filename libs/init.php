@@ -98,3 +98,10 @@ function divImage($purl, $cattr, $undefined_color = 'ffaabb', $echo = false)
     echo $str;
   return $str;
 }
+
+function form_processor_url($path, $dir = '/libs/custom/@form', $base = '')
+{
+  $base = $base ? $base : $_SERVER['DOCUMENT_ROOT'];
+  $full = $base . $dir . $path;
+  return $full;
+}

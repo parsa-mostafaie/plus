@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/@form/processors/login-form.php';
+include_once form_processor_url('/login-form.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
