@@ -1,5 +1,5 @@
 <?php
-require_once 'lib.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/libs/init.php';
 
 //? Only Admin can access /admin
 authAdmin();
