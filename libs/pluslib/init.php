@@ -39,6 +39,10 @@ function c_url($url)
 {
   return regular_url(HOME_URL() . $url);
 }
+function web_url($url)
+{
+  return str_replace('\\', '/', $url);
+}
 function number_format_short($n, $precision = 1)
 {
   if ($n < 900) {
@@ -92,6 +96,7 @@ function imageComponent($purl, $cattr = '', $undefined = '/default_uploads/unkno
 
 function divImage($purl, $cattr, $undefined_color = 'ffaabb', $echo = false)
 {
+  $purl = web_url($purl);
   $str = "<div style='background: url($purl), #$undefined_color; background-size: cover' $cattr></div>";
   if ($echo)
     echo $str;
