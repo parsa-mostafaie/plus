@@ -13,8 +13,8 @@ include_once form_processor_url('/login-form.php');
   <link rel="stylesheet" href="/assets/styles/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
-  <script src="/assets/scripts/resubmit.js"></script>
-  <script src="/assets/scripts/password.js"></script>
+  <script src="/libs/pluslib/frontend/resubmit.js"></script>
+  <script src="/libs/pluslib/frontend/password.js"></script>
 
 </head>
 

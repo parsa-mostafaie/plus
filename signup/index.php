@@ -19,8 +19,8 @@ include_once form_processor_url('/signup-form.php');
         }
     </style>
 
-    <script src="/assets/scripts/resubmit.js"></script>
-    <script src="/assets/scripts/password.js"></script>
+    <script src="/libs/pluslib/frontend/resubmit.js"></script>
+    <script src="/libs/pluslib/frontend/password.js"></script>
 
 </head>
 

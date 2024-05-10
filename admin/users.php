@@ -13,8 +13,8 @@ authAdmin();
   <title>User List</title>
   <link rel="stylesheet" href="/assets/styles/style.css">
 
-  <script src='/assets/scripts/sparams.js'></script>
-  <script src='/assets/scripts/grk.js'></script>
+  <script src='/libs/pluslib/frontend/sparams.js'></script>
+  <script src='/libs/pluslib/frontend/grk.js'></script>
 </head>
 
 <body>

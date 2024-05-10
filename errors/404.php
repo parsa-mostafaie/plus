@@ -9,7 +9,7 @@
     min-height: 100vh;
   }
 </style>
-<script src="/assets/scripts/dynamic.js"></script>
+<script src="/libs/pluslib/frontend/dynamic.js"></script>
 
 <template id='temp'>
   <div class="page-wrap d-flex flex-row align-items-center">
