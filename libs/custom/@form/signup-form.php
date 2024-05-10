@@ -53,9 +53,7 @@ $__PROCESS__CALLBACK__ = function () {
         );
         set_prof_image($tid, 'profimg');
         set_pbg_image($tid, 'pbg');
-        if ($pword !== '') {
-            loginWith($uname, $pword);
-        }
+        loginWith($uname, $pword);
         redirect('/profile/');
     }
     add_user($fname, $lname, $uname, $pword);

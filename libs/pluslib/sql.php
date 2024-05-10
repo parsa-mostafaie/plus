@@ -296,7 +296,7 @@ class insertQueryCLASS
 class deleteQueryCLASS
 {
   private Sql_Table $table;
-  private $condition;
+  private $condition = '1=1';
 
   public function __construct($table)
   {
