@@ -24,7 +24,7 @@ $uename = $tu ? $tuq['username'] : null;
 $prev_pword = $is_edit ? get_users(cols: 'password', condition: "id=$tid")->fetchColumn() : null;
 # edit end
 
-$TEMP = validateUserName($uname);
+$TEMP = is_username($uname);
 
 $_COND = !array_any($_inps_arr, fn($val) => strlen($val) == 0) && ($tu || $pword != '') && $TEMP;
 
